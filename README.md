@@ -1,2 +1,2 @@
 Database Exercises: 
-This reposotory contains exercises from Codeup in MYSQL Workbench. 
+This reposotory contains SQL exercises from Codeup in MYSQL Workbench. 
