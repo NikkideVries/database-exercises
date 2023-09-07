@@ -34,7 +34,8 @@ SELECT
 FROM
 	employees
 WHERE
-	first_name = 'Irena' or first_name = 'Vidya' or first_name = 'Maya' AND 'M';
+	(first_name = 'Irena' or first_name = 'Vidya' or first_name = 'Maya') AND  gender = 'M';
+#The employee numbers are 10200, 10397, 10821.
 
 -- 4. Find all unique last names that start with 'E'.
 SELECT 
