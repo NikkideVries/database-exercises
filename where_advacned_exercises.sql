@@ -38,7 +38,7 @@ WHERE
 #The employee numbers are 10200, 10397, 10821.
 
 -- 4. Find all unique last names that start with 'E'.
-SELECT 
+SELECT distinct
 	last_name
 FROM 
 	employees
@@ -46,15 +46,15 @@ WHERE
 	last_name Like 'E%';
 
 -- 5. Find all unique last names that start or end with 'E'.
-SELECT 
+SELECT distinct
 	last_name
 FROM
 	employees
 WHERE 
-	last_name LIKE '%E';
+	last_name LIKE '%E' or last_name like 'e%';
 
 -- 6. Find all unique last names that end with E, but does not start with E?
-SELECT 
+SELECT distinct
 	last_name
 FROM 
 	employees
@@ -62,12 +62,12 @@ WHERE
 	last_name LIKE '%E' and last_name NOT LIKE 'E%';
 
 -- 7. Find all unique last names that start and end with 'E'.
-SELECT 
+SELECT distinct
 	last_name
 FROM
 	employees
 WHERE
-	last_name Like '%E' and last_name LIKE 'E%';
+	last_name Like 'e%e';
 
 -- 8. Find all current or previous employees hired in the 90s. Enter a comment with top three employee numbers.
 SELECT
@@ -99,10 +99,12 @@ SELECT
 FROM
 	employees
 WHERE 
-	hire_date Between '1990-01-01' and '1999-12-31' and birth_date LIKE '%-12-25';
+	hire_date like '199%' 
+    and birth_date LIKE '%-12-25';
+# 10261, 10438, 10681
 
 -- 11. Find all unique last names that have a 'q' in their last name.
-SELECT
+SELECT distinct
 	last_name
 FROM
 	employees
@@ -110,7 +112,7 @@ WHERE
 	last_name Like '%q%';
 
 -- 12. Find all unique last names that have a 'q' in their last name but not 'qu'.
-SELECT
+SELECT distinct
 	last_name
 FROM
 	employees
