@@ -30,10 +30,10 @@ SELECT
 FROM
 	employees
 WHERE
-	first_name = 'Irena' or first_name = 'Vidya' or first_name = 'Maya'
+	(first_name = 'Irena' or first_name = 'Vidya' or first_name = 'Maya')
 ORDER BY 
-	first_name ASC;
-# The first row is Irena Reutenauer and the last row is Vidya Simmen
+	first_name ASC, last_name ASC;
+# The first row is Irena  Acton and the last row is Vidya Zweizig
 	
 /* Question 4. 
 Find all employees with first names 'Irena', 'Vidya', or 'Maya', and order your results returned by last name and then first name. 
@@ -79,16 +79,15 @@ Sort the results by their hire date, so that the newest employees are listed fir
 Enter a comment with the number of employees returned, the name of the newest employee, and the name of the oldest employee.
 */
 
-SELECT distinct
-	last_name,
-    hire_date
+SELECT 
+	last_name
 FROM
 	employees
 WHERE 
 	last_name Like 'e%e'
 Order By
 	hire_date DESC;
-# the number of employees retuned was 875. The last name of the newest employee is eldridge and the newest employee Erde.
+# the number of employees retuned was 899. The last name of the newest employee is eldridge and the newest employee Erde.
 
 /* Question 7
 Find all employees hired in the 90s and born on Christmas. 
@@ -109,9 +108,9 @@ WHERE
 	hire_date like '199%' 
     AND birth_date LIKE '%-12-25'
 ORDER by
-	birth_date DESC, hire_date DESC;
+	birth_date ASC, hire_date DESC;
 # the number of results is 362. 
-# The oldest employee who was hired last is Gudjon Vakili and the youngest employee who was hire firts is Tremaine Eugenio.
+# The oldest employee who was hired last is Khun Bernini and the youngest employee who was hire first is Douadi Pettis.
 
 
 
