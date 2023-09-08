@@ -7,33 +7,32 @@ Write a query to find all employees whose last name starts and ends with 'E'.
 Use concat() to combine their first and last name together as a single column named full_name.
 */
 SELECT 
-	concat(first_name, ' ', last_name) as Employees_List
+	concat(first_name, ' ', last_name) as full_name
 FROM
 	employees
 WHERE
-	last_name like '%e';
+	last_name like 'e%e';
 
 /* Question 3
 Convert the names produced in your last query to all uppercase.
 */ 
 
 SELECT 
-	concat(upper(first_name), ' ', upper(last_name)) as Employee_List
+	UPPER(concat((first_name), ' ',(last_name))) as full_name
 From
 	employees
-WHERE last_Name like '%e';
+WHERE last_Name like 'e%e';
 
 /* Question 4
 Use a function to determine how many results were returned from your previous query.
 */
 
-SELECT 	
-	COUNT(concat(upper(first_name), ' ', upper(last_name))) as total_amount
-FROM
+SELECT 
+	count(UPPER(concat((first_name), ' ',(last_name)))) as full_name_cnt
+From
 	employees
-WHERE
-	last_name like '%e';
-#the amount of results is 24292
+WHERE last_Name like 'e%e';
+#the amount of results is 889
 
 /* Question 5
 Find all employees hired in the 90s and born on Christmas. 
@@ -42,12 +41,13 @@ Use datediff() function to find how many days they have been working at the comp
 */
 
 SELECT 
-	datediff(now(), hire_date) as Days_Worked
+	concat(first_name, ' ', last_name) as full_name,
+    datediff(now(), hire_date) as Days_Employed
 FROM
 	employees
 WHERE
 	hire_date like '199%' 
-    AND birth_date LIKE '%-12-25';
+    AND birth_date LIKE '%12-25';
     
 /* Question 6
 Find the smallest and largest current salary from the salaries table.
@@ -61,9 +61,13 @@ FROM
     
 /* Question 7
 Use your knowledge of built in SQL functions to generate a username for all of the employees. 
-A username should be all lowercase, and consist of the first character of the employees first name, 
-the first 4 characters of the employees last name, an underscore, the month the employee was born, 
-and the last two digits of the year that they were born. 
+A username should be 
+- all lowercase
+- consist of the first character of the employees first name, 
+- the first 4 characters of the employees last name, 
+- an underscore, 
+- the month the employee was born, 
+- and the last two digits of the year that they were born. 
 */
 
 SELECT 
@@ -80,5 +84,16 @@ FROM
 	employees;        
 
 
+ #instructors version: 
  
+ SELECT 
+     Concat(lower(LEFT(first_name, 1)) 
+    , lower(LEFT(last_name, 4)) 
+    , ' _ '
+    , DATE_FORMAT(birth_date, '%m%y')) as username
+	, first_name
+    , last_name
+    , birth_date
+FROM 
+	employees;
 
