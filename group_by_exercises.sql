@@ -48,3 +48,45 @@ FROM
 	employees
 WHERE
 	last_name like '%q%' and last_name not like '%qu%';
+    
+/* Question 6 
+Add a COUNT() to your results for exercise 5 to find the number of employees with the same last name.
+*/
+
+SELECT distinct Count(
+	last_name)
+FROM
+	employees
+WHERE
+	last_name like '%q%' and last_name not like '%qu%';
+    
+/* Find all employees with first names 'Irena', 'Vidya', or 'Maya'. 
+Use COUNT(*) and GROUP BY to find the number of employees with those names for each gender.
+*/ 
+
+SELECT COUNT( 
+	first_name)
+FROM
+	employees
+WHERE 
+	first_name IN ('Irena', 'Vidya' , 'Maya');
+
+/* Question 8
+Using your query that generates a username for all employees, generate a count of employees with each unique username.
+*/
+ 
+ SELECT distinct (
+ COUNT(Concat(
+	lower(LEFT(first_name, 1)) 
+    , lower(LEFT(last_name, 4)) 
+    , ' _ '
+	, DATE_FORMAT(birth_date, '%m%y')))) as username_count
+	
+FROM 
+	employees;
+
+/* Question 9
+
+
+
+
