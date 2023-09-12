@@ -201,6 +201,25 @@ Group by
 Order by
 	dept_no;
 
+-- review    
+
+
+SELECT
+	d.dept_no
+    ,d.dept_name
+    ,count(*) as num_employees
+FROM 
+	dept_emp as de
+-- start with all observations from DE table and matching depts observations
+LEFT JOIN
+	departments as d
+		on d.dept_no = de.dept_no
+WHERE 
+	de.to_date > curdate()
+GROUP by
+	dept_name
+ORder by 
+	dept_no; 
 /* Question 7
 Which department has the highest average salary? Hint: Use current not historic information.
 */
