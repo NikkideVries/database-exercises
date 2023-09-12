@@ -7,6 +7,7 @@ Describe users;
 Describe roles;
 SELECT * From users;
 SELECT * From roles;
+-- CMD+shift+return; creates multipe tabs to view. make sure to HIGHLIGHT the ones you want. 
 
 /* Question 2
 Use join, left join, and right join to combine results from the users and roles tables as we did in the lesson. 
@@ -64,11 +65,14 @@ SELECT
     , count(u.name) as number_of_users
 From 
 	users as u
+-- 
 Right Join 
 	roles as r
 		on r.id = u.role_id
 Group by
 	`name`;
+    
+-- Review: 
     
 -- Employees Database:
 /* Question 1:
@@ -86,6 +90,7 @@ write a query that shows each department along with the name of the current mana
 */
 
 SELECT 
+-- do select star to make sure that everything flows and the table is pulling everything that you want. 
 	dept_name as "Department Name" 
     , concat(employees.first_name, ' ', employees.last_name) as "Department Manager"
 FROM 
