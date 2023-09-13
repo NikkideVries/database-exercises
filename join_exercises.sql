@@ -247,6 +247,34 @@ ORDER BY
 	average_salary DESC
 Limit 1;
 
+
+-- Review:
+
+SELECT 
+	d.dept_name
+	, AVG(s.salary) as average_salary
+
+FROM
+	salaries as s
+-- Left join beacuse we want to keep all salaries observatons
+INNER JOIN
+	dept_emp as de
+		on s.emp_no = de.emp_no
+INNER JOIN 
+	departments as d
+		on d.dept_no = de.dept_no
+WHERE
+	s.to_date > curdate()
+    and de.to_date > curdate()
+Group by
+	d.dept_name
+Order By
+	average_salary DESC
+Limit 1;
+
+
+		
+
 /* Question 8
 Who is the highest paid employee in the Marketing department?
 */
@@ -299,6 +327,28 @@ Order by
 	salary DESC
 Limit 1;
 
+-- Review
+SELECT 
+	first_name,
+    last_name,
+    salary,
+    dept_name 
+FROM
+	employees
+LEFT JOIN
+	salaries
+		on employees.emp_no = salaries.emp_no
+LEFT Join
+	dept_manager
+		on salaries.emp_no = dept_manager.emp_no
+LEFT JOIN
+	departments
+		on dept_manager.dept_no = departments.dept_no
+WHERE 
+	dept_manager.to_date > curdate()
+Order by 
+	salary DESC
+Limit 1;
 		
 /* Question 10
 Determine the average salary for each department. Use all salary information and round your results.
